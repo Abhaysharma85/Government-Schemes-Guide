@@ -1,21 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import EligibilityForm from './components/tools/EligibilityForm';
 import SchemeList from './components/schemes/SchemeList';
+import SplashScreen from './components/layout/SplashScreen';
 import { schemes } from './data/schemesData';
 import { useLanguage } from './context/LanguageContext';
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true);
   const { language } = useLanguage();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // State lifted up or managed in pages - for now, I'll pass props where needed or restructure
   // Ideally SchemeList should fetch data or use context, but keeping it simple as per original
 
   // Note: Original SchemeList and Dashboard might expect props. 
   // I will wrap them in Page components or pass props here.
+
+  if (showSplash) {
+    return <SplashScreen />;
+  }
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -47,7 +60,7 @@ function App() {
       </main>
 
       <footer style={{
-        textAlign: 'center',
+        textAlign: 'left',
         padding: '2rem',
         background: '#0F172A',
         color: '#94a3b8',
