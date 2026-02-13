@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import { useAuth } from '../../context/AuthContext';
 import { Search, Menu, X, Landmark, Globe, Moon, Sun } from 'lucide-react';
+
 
 const Navbar = () => {
     const { language, toggleLanguage, t } = useLanguage();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
+    const { user, logout } = useAuth(); // Access auth state
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');
@@ -31,8 +34,11 @@ const Navbar = () => {
         { name: t.home, path: "/" },
         { name: t.schemes, path: "/schemes" },
         { name: t.eligibility, path: "/eligibility" },
-        { name: t.dashboard, path: "/dashboard" },
     ];
+
+    if (user) {
+        navLinks.push({ name: t.dashboard, path: "/dashboard" });
+    }
 
     return (
         <nav style={{
@@ -128,6 +134,42 @@ const Navbar = () => {
                         {darkMode ? <Sun size={22} color="var(--accent-color)" /> : <Moon size={22} />}
                     </button>
 
+                    {/* Auth Buttons */}
+                    <div className="desktop-nav">
+                        {user ? (
+                            <button
+                                onClick={logout}
+                                style={{
+                                    background: 'var(--primary-color)',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '0.375rem',
+                                    padding: '0.5rem 1rem',
+                                    cursor: 'pointer',
+                                    fontSize: '0.9rem',
+                                    fontWeight: '500'
+                                }}
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <Link to="/signin" style={{
+                                background: 'transparent',
+                                color: 'var(--primary-color)',
+                                border: '1px solid var(--primary-color)',
+                                borderRadius: '0.375rem',
+                                padding: '0.4rem 0.9rem',
+                                textDecoration: 'none',
+                                fontSize: '0.9rem',
+                                fontWeight: '500',
+                                transition: 'all 0.2s'
+                            }}>
+                                Sign In
+                            </Link>
+                        )}
+                    </div>
+
+
                     {/* Mobile Menu Toggle */}
                     <button
                         className="mobile-toggle"
@@ -171,6 +213,38 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
+                    {user ? (
+                        <button
+                            onClick={() => {
+                                logout();
+                                setIsMenuOpen(false);
+                            }}
+                            style={{
+                                padding: '0.75rem',
+                                background: 'transparent',
+                                border: 'none',
+                                textAlign: 'left',
+                                color: 'var(--primary-color)',
+                                fontWeight: '600',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <Link
+                            to="/signin"
+                            onClick={() => setIsMenuOpen(false)}
+                            style={{
+                                padding: '0.75rem',
+                                color: 'var(--primary-color)',
+                                fontWeight: '600',
+                                textDecoration: 'none'
+                            }}
+                        >
+                            Sign In
+                        </Link>
+                    )}
                 </div>
             )}
         </nav>
