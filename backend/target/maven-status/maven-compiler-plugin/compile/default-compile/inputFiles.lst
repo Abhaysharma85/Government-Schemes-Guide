@@ -1,0 +1,13 @@
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\dto\SignupRequest.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\entity\User.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\dto\AuthResponse.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\repository\UserRepository.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\config\SecurityConfig.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\security\JwtAuthenticationFilter.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\controller\AuthController.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\BackendApplication.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\security\JwtUtil.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\service\AuthService.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\security\CustomUserDetailsService.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\service\impl\AuthServiceImpl.java
+C:\Users\HP\Desktop\Schemes-App\Government-Schemes-Guide\backend\src\main\java\com\govschemes\backend\dto\LoginRequest.java
