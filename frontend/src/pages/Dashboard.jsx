@@ -3,6 +3,18 @@ import { schemes } from '../data/schemesData';
 import { useLanguage } from '../context/LanguageContext';
 import { BarChart3, TrendingUp, Users, FileCheck } from 'lucide-react';
 
+const StatCard = ({ title, value, icon: Icon, color }) => (
+    <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ padding: '1rem', borderRadius: '50%', background: `${color}20`, color: color }}>
+            <Icon size={24} />
+        </div>
+        <div>
+            <p style={{ margin: 0, color: 'var(--secondary-color)', fontSize: '0.9rem' }}>{title}</p>
+            <h3 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--text-dark)' }}>{value}</h3>
+        </div>
+    </div>
+);
+
 const Dashboard = () => {
     const { language } = useLanguage();
 
@@ -29,18 +41,6 @@ const Dashboard = () => {
     };
 
     const text = t[language];
-
-    const StatCard = ({ title, value, icon: Icon, color }) => (
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <div style={{ padding: '1rem', borderRadius: '50%', background: `${color}20`, color: color }}>
-                <Icon size={24} />
-            </div>
-            <div>
-                <p style={{ margin: 0, color: 'var(--secondary-color)', fontSize: '0.9rem' }}>{title}</p>
-                <h3 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--text-dark)' }}>{value}</h3>
-            </div>
-        </div>
-    );
 
     return (
         <div>
