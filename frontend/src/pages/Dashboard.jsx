@@ -37,7 +37,7 @@ const Dashboard = () => {
             </div>
             <div>
                 <p style={{ margin: 0, color: 'var(--secondary-color)', fontSize: '0.9rem' }}>{title}</p>
-                <h3 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--primary-color)' }}>{value}</h3>
+                <h3 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--text-dark)' }}>{value}</h3>
             </div>
         </div>
     );
@@ -45,7 +45,7 @@ const Dashboard = () => {
     return (
         <div>
             <div style={{ marginBottom: '2rem' }}>
-                <h1 style={{ marginBottom: '0.5rem' }}>{text.title}</h1>
+                <h1 style={{ marginBottom: '0.5rem', color: 'var(--primary-color)' }}>{text.title}</h1>
                 <p style={{ color: 'var(--secondary-color)' }}>{text.subtitle}</p>
             </div>
 
@@ -56,17 +56,17 @@ const Dashboard = () => {
             </div>
 
             <div className="glass-card">
-                <h2 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <h2 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary-color)' }}>
                     <BarChart3 /> {text.trending}
                 </h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {sortedSchemes.map(scheme => (
                         <div key={scheme.id}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                                <span style={{ fontWeight: 500 }}>{scheme.title[language]}</span>
+                                <span style={{ fontWeight: 500, color: 'var(--text-dark)' }}>{scheme.title[language]}</span>
                                 <span style={{ fontWeight: 700, color: 'var(--primary-color)' }}>{scheme.popularity}%</span>
                             </div>
-                            <div style={{ height: '8px', background: '#e2e8f0', borderRadius: '4px', overflow: 'hidden' }}>
+                            <div style={{ height: '8px', background: 'var(--secondary-color)', opacity: 0.2, borderRadius: '4px', overflow: 'hidden' }}>
                                 <div
                                     style={{
                                         width: `${scheme.popularity}%`,

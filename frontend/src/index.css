@@ -1,13 +1,43 @@
 :root {
-  --primary-color: #0F172A; /* Slate 900 - Deep Navy */
-  --secondary-color: #334155; /* Slate 700 */
-  --accent-color: #F59E0B; /* Amber 500 - Gold */
-  --text-light: #F8FAFC; /* Slate 50 */
-  --text-dark: #1E293B; /* Slate 800 */
-  --bg-light: #F1F5F9; /* Slate 100 */
+  --primary-color: #0F172A;
+  /* Slate 900 - Deep Navy */
+  --secondary-color: #334155;
+  /* Slate 700 */
+  --accent-color: #F59E0B;
+  /* Amber 500 - Gold */
+  --text-light: #F8FAFC;
+  /* Slate 50 */
+  --text-dark: #1E293B;
+  /* Slate 800 */
+  --bg-light: #F1F5F9;
+  /* Slate 100 */
+  --card-bg: rgba(255, 255, 255, 0.7);
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.5);
   --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body.dark-mode {
+  --primary-color: #F8FAFC;
+  /* Slate 50 - Light Text for Dark Mode */
+  --secondary-color: #94a3b8;
+  /* Slate 400 */
+  --text-light: #0F172A;
+  /* Slate 900 */
+  --text-dark: #F1F5F9;
+  /* Slate 100 */
+  --bg-light: #0F172A;
+  /* Slate 900 - Dark Background */
+  --card-bg: rgba(30, 41, 59, 0.7);
+  /* Darker glass */
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  color: var(--text-dark);
+}
+
+body.dark-mode .glass-card {
+  background: var(--card-bg);
+  border-color: var(--glass-border);
 }
 
 * {
@@ -82,15 +112,28 @@ ul {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {

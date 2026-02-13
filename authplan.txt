@@ -1,0 +1,39 @@
+Proposed Changes
+1. Auth Context (src/context/AuthContext.jsx) [NEW]
+Create context to store user object { name, email, role }.
+Implement login(email, password) and signup(name, email, password, role) functions.
+Mock logic:
+Admin credentials: admin@gov.in / admin123 (Role: 'admin')
+User credentials: user@gov.in / user123 (Role: 'user')
+Persist login state using localStorage.
+2. Auth Page (src/pages/Auth.jsx) [NEW]
+Tabbed interface: [Login] | [Signup].
+Login Form: Email, Password.
+Signup Form: Name, Email, Password, Role Selection (Dropdown: User/Admin for demo purposes).
+Style using existing Glassmorphism and Dark Mode variables.
+3. Route Protection (src/components/layout/ProtectedRoute.jsx) [NEW]
+Wrapper component to check user and role.
+Redirect to /auth if not logged in.
+Redirect to / if logged in but insufficient permissions.
+4. App Integration (
+src/App.jsx
+)
+Wrap 
+App
+ with AuthProvider.
+Add /auth route.
+Protect /dashboard route (Admin only).
+5. Navbar Updates (
+src/components/layout/Navbar.jsx
+)
+Show "Login" button if guest.
+Show User Profile/Logout if logged in.
+Verification Plan
+Signup Flow:
+Register as a new user.
+Verify redirection to Home.
+Login Flow:
+Login as Admin -> Verify access to Dashboard.
+Login as User -> Verify access denied to Dashboard (if attempted).
+Logout:
+Verify user state is cleared.

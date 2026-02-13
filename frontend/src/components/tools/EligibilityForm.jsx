@@ -47,28 +47,29 @@ const EligibilityForm = ({ onFilterChange, language }) => {
         width: '100%',
         padding: '0.75rem',
         borderRadius: '0.5rem',
-        border: '1px solid #cbd5e1', // Slate 300
-        background: '#f8fafc', // Slate 50
+        border: '1px solid var(--glass-border)',
+        background: 'var(--bg-light)',
+        color: 'var(--text-dark)',
         fontSize: '1rem',
         outline: 'none',
-        transition: 'border-color 0.2s'
+        transition: 'border-color 0.2s, background 0.3s, color 0.3s'
     };
 
     return (
-        <div style={{ height: '100%' }}>
+        <div style={{ height: '100%', color: 'var(--text-dark)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                <div style={{ background: '#e0f2fe', padding: '0.5rem', borderRadius: '0.5rem', color: '#0284c7' }}>
+                <div style={{ background: 'var(--bg-light)', padding: '0.5rem', borderRadius: '0.5rem', color: 'var(--accent-color)', border: '1px solid var(--glass-border)' }}>
                     <Filter size={20} />
                 </div>
                 <div>
-                    <h3 style={{ margin: 0 }}>{t.title}</h3>
-                    <p style={{ margin: 0, fontSize: '0.875rem', color: '#64748b' }}>{t.subtitle}</p>
+                    <h3 style={{ margin: 0, color: 'var(--primary-color)' }}>{t.title}</h3>
+                    <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--secondary-color)' }}>{t.subtitle}</p>
                 </div>
             </div>
 
             <div style={{ display: 'grid', gap: '1.25rem' }}>
                 <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: '#334155' }}>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: 'var(--text-dark)' }}>
                         {t.age}
                     </label>
                     <input
@@ -79,12 +80,12 @@ const EligibilityForm = ({ onFilterChange, language }) => {
                         placeholder="e.g. 25"
                         style={inputStyle}
                         onFocus={(e) => e.target.style.borderColor = 'var(--primary-color)'}
-                        onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                        onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
                     />
                 </div>
 
                 <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: '#334155' }}>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: 'var(--text-dark)' }}>
                         {t.income}
                     </label>
                     <input
@@ -95,12 +96,12 @@ const EligibilityForm = ({ onFilterChange, language }) => {
                         placeholder="e.g. 200000"
                         style={inputStyle}
                         onFocus={(e) => e.target.style.borderColor = 'var(--primary-color)'}
-                        onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                        onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
                     />
                 </div>
 
                 <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: '#334155' }}>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: 'var(--text-dark)' }}>
                         {t.caste}
                     </label>
                     <select
@@ -109,7 +110,7 @@ const EligibilityForm = ({ onFilterChange, language }) => {
                         onChange={handleChange}
                         style={inputStyle}
                         onFocus={(e) => e.target.style.borderColor = 'var(--primary-color)'}
-                        onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                        onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
                     >
                         <option value="General">General / सामान्य</option>
                         <option value="OBC">OBC / अन्य पिछड़ा वर्ग</option>
@@ -119,7 +120,7 @@ const EligibilityForm = ({ onFilterChange, language }) => {
                 </div>
 
                 <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: '#334155' }}>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: 'var(--text-dark)' }}>
                         {t.occupation}
                     </label>
                     <select
@@ -128,7 +129,7 @@ const EligibilityForm = ({ onFilterChange, language }) => {
                         onChange={handleChange}
                         style={inputStyle}
                         onFocus={(e) => e.target.style.borderColor = 'var(--primary-color)'}
-                        onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                        onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
                     >
                         <option value="Unemployed">Unemployed / बेरोजगार</option>
                         <option value="Salaried">Salaried / वेतनभोगी</option>

@@ -31,7 +31,7 @@ function App() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-light)', color: 'var(--text-dark)', transition: 'background 0.3s, color 0.3s' }}>
       <Navbar />
 
       <main style={{ flex: 1 }}>
@@ -39,13 +39,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/schemes" element={
             <div className="container" style={{ padding: '2rem 1rem' }}>
-              <h1 style={{ marginBottom: '2rem' }}>All Schemes</h1>
+              <h1 style={{ marginBottom: '2rem', color: 'var(--primary-color)' }}>All Schemes</h1>
               <SchemeList schemes={schemes} language={language} />
             </div>
           } />
           <Route path="/eligibility" element={
             <div className="container" style={{ padding: '2rem 1rem', maxWidth: '800px' }}>
-              <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Check Eligibility</h1>
+              <h1 style={{ marginBottom: '2rem', textAlign: 'center', color: 'var(--primary-color)' }}>Check Eligibility</h1>
               <div className="glass-card">
                 <EligibilityForm onFilterChange={(f) => console.log(f)} language={language} />
               </div>
@@ -62,9 +62,10 @@ function App() {
       <footer style={{
         textAlign: 'left',
         padding: '2rem',
-        background: '#0F172A',
-        color: '#94a3b8',
-        marginTop: 'auto'
+        background: 'var(--primary-color)',
+        color: 'var(--bg-light)',
+        marginTop: 'auto',
+        transition: 'background 0.3s, color 0.3s'
       }}>
         © 2026 Smart Citizen Portal. Government of India Initiative (Mock).
       </footer>
