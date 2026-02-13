@@ -19,20 +19,21 @@ const Navbar = () => {
             position: 'sticky',
             top: 0,
             zIndex: 1000,
-            background: '#ffffff',
-            borderBottom: '1px solid #e5e5e5',
-            color: '#000000',
+            background: 'rgba(15, 23, 42, 0.95)', // Dark Navy
+            backdropFilter: 'blur(10px)',
+            borderBottom: '1px solid rgba(255,255,255,0.1)',
+            color: 'white',
             padding: '1rem 0'
         }}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 {/* Logo */}
-                <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.25rem', fontWeight: '700', color: '#000000', textDecoration: 'none' }}>
-                    <Landmark size={28} color="#000000" />
-                    <span>GovSchemes<span style={{ color: '#000000' }}>.in</span></span>
+                <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.5rem', fontWeight: 'bold', color: 'white' }}>
+                    <Landmark size={32} color="var(--accent-color)" />
+                    <span>GovSchemes<span style={{ color: 'var(--accent-color)' }}>.in</span></span>
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="desktop-nav" style={{ display: 'none', gap: '2.5rem', alignItems: 'center' }}>
+                <div className="desktop-nav" style={{ display: 'none', gap: '2rem', alignItems: 'center' }}>
                     <style>{`
             @media (min-width: 768px) {
                 .desktop-nav { display: flex !important; }
@@ -45,11 +46,9 @@ const Navbar = () => {
                             to={link.path}
                             className={({ isActive }) => isActive ? "active-link" : ""}
                             style={({ isActive }) => ({
-                                color: isActive ? '#000000' : '#666666',
+                                color: isActive ? 'var(--accent-color)' : 'rgba(255,255,255,0.8)',
                                 fontWeight: isActive ? 600 : 400,
-                                fontSize: '0.95rem',
-                                textDecoration: 'none',
-                                transition: 'color 0.2s'
+                                fontSize: '1rem'
                             })}
                         >
                             {link.name}
@@ -60,21 +59,17 @@ const Navbar = () => {
                     <button
                         onClick={toggleLanguage}
                         style={{
-                            background: '#ffffff',
-                            border: '1.5px solid #e5e5e5',
-                            borderRadius: '0.375rem',
+                            background: 'rgba(255,255,255,0.1)',
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            borderRadius: '20px',
                             padding: '0.5rem 1rem',
-                            color: '#000000',
+                            color: 'white',
                             cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem',
-                            fontSize: '0.9rem',
-                            fontWeight: '500',
-                            transition: 'all 0.2s'
+                            fontSize: '0.9rem'
                         }}
-                        onMouseEnter={(e) => e.currentTarget.style.borderColor = '#000000'}
-                        onMouseLeave={(e) => e.currentTarget.style.borderColor = '#e5e5e5'}
                     >
                         <Globe size={16} />
                         {language === 'en' ? 'English' : 'हिंदी'}
@@ -85,7 +80,7 @@ const Navbar = () => {
                 <button
                     className="mobile-toggle"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    style={{ background: 'none', border: 'none', color: '#000000', cursor: 'pointer' }}
+                    style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}
                 >
                     {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
@@ -98,26 +93,19 @@ const Navbar = () => {
                     top: '100%',
                     left: 0,
                     right: 0,
-                    background: '#ffffff',
+                    background: '#1E293B',
                     padding: '1rem',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '1rem',
-                    borderBottom: '1px solid #e5e5e5',
-                    boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+                    borderBottom: '1px solid rgba(255,255,255,0.1)'
                 }}>
                     {navLinks.map((link) => (
                         <Link
                             key={link.path}
                             to={link.path}
                             onClick={() => setIsMenuOpen(false)}
-                            style={{ 
-                                padding: '0.5rem', 
-                                color: '#000000', 
-                                borderBottom: '1px solid #f5f5f5',
-                                textDecoration: 'none',
-                                fontWeight: '500'
-                            }}
+                            style={{ padding: '0.5rem', color: 'white', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
                         >
                             {link.name}
                         </Link>
@@ -127,11 +115,11 @@ const Navbar = () => {
                         style={{
                             background: 'none',
                             border: 'none',
-                            color: '#000000',
+                            color: 'var(--accent-color)',
                             textAlign: 'left',
                             padding: '0.5rem',
                             cursor: 'pointer',
-                            fontWeight: '600',
+                            fontWeight: 'bold',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem'
