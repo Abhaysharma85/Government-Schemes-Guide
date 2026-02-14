@@ -34,11 +34,15 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await api.post('/auth/login', { email, password });
-            const { token, name, email: userEmail, userType } = response.data;
+            // Map email to username field as backend allows email login via that field
+            const response = await api.post('/auth/login', { username: email, password });
+            
+            // Backend returns: token, username, email, role, message
+            const { token, username, email: userEmail, role } = response.data;
 
             localStorage.setItem('token', token);
-            const userData = { name, email: userEmail, userType };
+            // Map backend fields to what frontend expects (name, userType)
+            const userData = { name: username, email: userEmail, userType: role };
             setUser(userData);
 
             return userData;

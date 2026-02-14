@@ -7,8 +7,7 @@ export default function SignupPage() {
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
+        username: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -36,7 +35,7 @@ export default function SignupPage() {
         setLoading(true);
         try {
             await signup({
-                name: `${formData.firstName} ${formData.lastName}`,
+                username: formData.username,
                 email: formData.email,
                 password: formData.password
             });
@@ -101,78 +100,41 @@ export default function SignupPage() {
                 )}
 
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-                    {/* First Name and Last Name Row */}
-                    <div style={{ display: "flex", gap: "1rem" }}>
-                        <div style={{ flex: 1 }}>
-                            <label
-                                htmlFor="firstName"
-                                style={{
-                                    display: "block",
-                                    fontSize: "0.875rem",
-                                    color: "#374151",
-                                    marginBottom: "0.5rem",
-                                    fontWeight: "500",
-                                }}
-                            >
-                                First Name
-                            </label>
-                            <input
-                                id="firstName"
-                                type="text"
-                                required
-                                value={formData.firstName}
-                                onChange={(e) => handleInputChange("firstName", e.target.value)}
-                                onFocus={() => setFocusedField("firstName")}
-                                onBlur={() => setFocusedField(null)}
-                                placeholder="First name"
-                                style={{
-                                    width: "100%",
-                                    padding: "0.625rem 0.75rem",
-                                    backgroundColor: "white",
-                                    border: focusedField === "firstName" ? "1px solid #000" : "1px solid #d1d5db",
-                                    borderRadius: "0.375rem",
-                                    color: "#000",
-                                    fontSize: "0.875rem",
-                                    outline: "none",
-                                    transition: "border-color 0.2s",
-                                }}
-                            />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                            <label
-                                htmlFor="lastName"
-                                style={{
-                                    display: "block",
-                                    fontSize: "0.875rem",
-                                    color: "#374151",
-                                    marginBottom: "0.5rem",
-                                    fontWeight: "500",
-                                }}
-                            >
-                                Last Name
-                            </label>
-                            <input
-                                id="lastName"
-                                type="text"
-                                required
-                                value={formData.lastName}
-                                onChange={(e) => handleInputChange("lastName", e.target.value)}
-                                onFocus={() => setFocusedField("lastName")}
-                                onBlur={() => setFocusedField(null)}
-                                placeholder="Last name"
-                                style={{
-                                    width: "100%",
-                                    padding: "0.625rem 0.75rem",
-                                    backgroundColor: "white",
-                                    border: focusedField === "lastName" ? "1px solid #000" : "1px solid #d1d5db",
-                                    borderRadius: "0.375rem",
-                                    color: "#000",
-                                    fontSize: "0.875rem",
-                                    outline: "none",
-                                    transition: "border-color 0.2s",
-                                }}
-                            />
-                        </div>
+                    {/* Username Field */}
+                    <div>
+                        <label
+                            htmlFor="username"
+                            style={{
+                                display: "block",
+                                fontSize: "0.875rem",
+                                color: "#374151",
+                                marginBottom: "0.5rem",
+                                fontWeight: "500",
+                            }}
+                        >
+                            Username
+                        </label>
+                        <input
+                            id="username"
+                            type="text"
+                            required
+                            value={formData.username}
+                            onChange={(e) => handleInputChange("username", e.target.value)}
+                            onFocus={() => setFocusedField("username")}
+                            onBlur={() => setFocusedField(null)}
+                            placeholder="Choose a username"
+                            style={{
+                                width: "100%",
+                                padding: "0.625rem 0.75rem",
+                                backgroundColor: "white",
+                                border: focusedField === "username" ? "1px solid #000" : "1px solid #d1d5db",
+                                borderRadius: "0.375rem",
+                                color: "#000",
+                                fontSize: "0.875rem",
+                                outline: "none",
+                                transition: "border-color 0.2s",
+                            }}
+                        />
                     </div>
 
                     {/* Email Field */}
