@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import api from '../services/api';
 
 const AuthContext = createContext();
 
@@ -9,51 +10,60 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check for saved user in localStorage on mount
-        const savedUser = localStorage.getItem('user');
-        if (savedUser) {
-            setUser(JSON.parse(savedUser));
+        // Check for saved token and fetch user data
+        const token = localStorage.getItem('token');
+        if (token) {
+            fetchCurrentUser();
+        } else {
+            setLoading(false);
         }
-        setLoading(false);
     }, []);
 
+    const fetchCurrentUser = async () => {
+        try {
+            const response = await api.get('/auth/me');
+            setUser(response.data);
+        } catch (error) {
+            console.error('Failed to fetch user:', error);
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const login = async (email, password) => {
-        // Mock login logic
-        // In a real app, this would be an API call
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (email === 'admin@gov.in' && password === 'admin123') {
-                    const adminUser = { name: 'Admin User', email, role: 'admin' };
-                    setUser(adminUser);
-                    localStorage.setItem('user', JSON.stringify(adminUser));
-                    resolve(adminUser);
-                } else if (email && password) {
-                    // Allow any other user for demo purposes
-                    const normalUser = { name: 'Citizen User', email, role: 'user' };
-                    setUser(normalUser);
-                    localStorage.setItem('user', JSON.stringify(normalUser));
-                    resolve(normalUser);
-                } else {
-                    reject(new Error('Invalid credentials'));
-                }
-            }, 1000);
-        });
+        try {
+            // Map email to username field as backend allows email login via that field
+            const response = await api.post('/auth/login', { username: email, password });
+            
+            // Backend returns: token, username, email, role, message
+            const { token, username, email: userEmail, role } = response.data;
+
+            localStorage.setItem('token', token);
+            // Map backend fields to what frontend expects (name, userType)
+            const userData = { name: username, email: userEmail, userType: role };
+            setUser(userData);
+
+            return userData;
+        } catch (error) {
+            throw new Error(error.response?.data?.error || 'Login failed');
+        }
     };
 
     const signup = async (userData) => {
-        // Mock signup logic
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const newUser = { ...userData, role: 'user' }; // Default to user role
-                setUser(newUser);
-                localStorage.setItem('user', JSON.stringify(newUser));
-                resolve(newUser);
-            }, 1000);
-        });
+        try {
+            await api.post('/auth/signup', userData);
+            // Do not auto-login
+            return true;
+        } catch (error) {
+            throw new Error(error.response?.data?.error || 'Signup failed');
+        }
     };
 
     const logout = () => {
         setUser(null);
+        localStorage.removeItem('token');
         localStorage.removeItem('user');
     };
 

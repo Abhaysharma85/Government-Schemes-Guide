@@ -38,6 +38,7 @@ const Navbar = () => {
 
     if (user) {
         navLinks.push({ name: t.dashboard, path: "/dashboard" });
+        navLinks.push({ name: "AI Tool", path: "/chat" });
     }
 
     return (

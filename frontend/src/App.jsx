@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
@@ -12,6 +12,7 @@ import ProtectedRoute from './components/layout/ProtectedRoute';
 import { schemes } from './data/schemesData';
 import { useLanguage } from './context/LanguageContext';
 import { AuthProvider } from './context/AuthContext';
+import ChatPage from './pages/ChatPage';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -23,6 +24,9 @@ function App() {
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  const location = useLocation();
+  const isChatPage = location.pathname === '/chat';
 
   if (showSplash) {
     return <SplashScreen />;
@@ -62,19 +66,27 @@ function App() {
                 </div>
               </ProtectedRoute>
             } />
+
+            <Route path="/chat" element={
+              <ProtectedRoute>
+                <ChatPage />
+              </ProtectedRoute>
+            } />
           </Routes>
         </main>
 
-        <footer style={{
-          textAlign: 'left',
-          padding: '2rem',
-          background: 'var(--primary-color)',
-          color: 'var(--bg-light)',
-          marginTop: 'auto',
-          transition: 'background 0.3s, color 0.3s'
-        }}>
-          © 2026 Smart Citizen Portal. Government of India Initiative (Mock).
-        </footer>
+        {!isChatPage && (
+          <footer style={{
+            textAlign: 'left',
+            padding: '2rem',
+            background: 'var(--primary-color)',
+            color: 'var(--bg-light)',
+            marginTop: 'auto',
+            transition: 'background 0.3s, color 0.3s'
+          }}>
+            © 2026 Smart Citizen Portal. Government of India Initiative (Mock).
+          </footer>
+        )}
       </div>
     </AuthProvider>
   );
